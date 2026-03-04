@@ -1,12 +1,5 @@
 # 🏠 House Price Predictor – An MLOps Learning Project
-
-Welcome to the **House Price Predictor** project! This is a real-world, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
-
-You'll start from raw data and move through data preprocessing, feature engineering, experimentation, model tracking with MLflow, and optionally using Jupyter for exploration – all while applying industry-grade tooling.
-
-> 🚀 **Want to master MLOps from scratch?**  
-Check out the [MLOps Bootcamp at School of DevOps](https://schoolofdevops.com) to level up your skills.
-
+这是一个非常标准的 端到端机器学习项目结构，涵盖了从原始数据处理到模型部署的全流程
 ---
 
 ## 📦 Project Structure
@@ -26,6 +19,25 @@ house-price-predictor/
 ├── requirements.txt        # Python dependencies
 └── README.md               # You’re here!
 ```
+目录结构深度解析
+   * `data/` (数据层)
+       * raw/: 存放原始数据（如 house_data.csv）。在 MLOps 中，原始数据应视为只读，不可修改。
+       * processed/: 存放清洗、转换后的数据，供模型训练直接读取。
+   * `notebooks/` (实验与探索层)
+       * 按序号排列（00-03），代表了数据科学家的工作流：数据工程 -> 探索性数据分析 (EDA) -> 特征工程 -> 模型实验。这是项目的“实验室”。
+   * `src/` (核心源代码层)
+       * 这是项目的核心，将 Notebook 中的实验代码工程化、模块化。
+       * data/run_processing.py: 数据清洗脚本。
+       * features/engineer.py: 特征提取逻辑（确保训练和推理时特征一致）。
+       * models/train_model.py: 自动化训练脚本，输出模型文件。
+       * api/: 模型推理服务。使用 FastAPI 或 Flask 将模型包装成 Web API，供其他系统调用。
+   * `models/trained/` (模型仓库)
+       * 存放训练好的模型权重（如 .pkl, .h5, .onnx）。
+   * `deployment/` (部署与运维层)
+       * mlflow/: 用于实验跟踪和模型版本管理。
+       * kubernetes/: 生产环境容器化部署的配置文件。
+   * `streamlit_app/` (应用演示层)
+       * 一个基于 Python 的前端展示界面，让非技术用户也能通过网页输入参数并查看预测结果。
 
 ---
 
