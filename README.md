@@ -42,7 +42,7 @@ house-price-predictor/
 目录结构深度解析
    * `data/` (数据层)
        * raw/: 存放原始数据（如 house_data.csv）。在 MLOps 中，原始数据应视为只读，不可修改。
-       * processed/: 存放清洗、转换后的数据，供模型训练直接读取。
+       * processed/: 存放清洗、转换后的数据，供模型训练直接读取。通过notebook下的代码清洗
    * `notebooks/` (实验与探索层)
        * 按序号排列（00-03），代表了数据科学家的工作流：数据工程 -> 探索性数据分析 (EDA) -> 特征工程 -> 模型实验。这是项目的“实验室”。
    * `src/` (核心源代码层)
@@ -52,7 +52,8 @@ house-price-predictor/
        * models/train_model.py: 自动化训练脚本，输出模型文件。
        * api/: 模型推理服务。使用 FastAPI 或 Flask 将模型包装成 Web API，供其他系统调用。
    * `models/trained/` (模型仓库)
-       * 存放训练好的模型权重（如 .pkl, .h5, .onnx）。
+       * 存放训练好的模型权重和配置（如 .pkl, .h5, .onnx）。
+       * 模型配置是数据科学家与机器学习工程师协作的关键
    * `deployment/` (部署与运维层)
        * mlflow/: 用于实验跟踪和模型版本管理。
        * kubernetes/: 生产环境容器化部署的配置文件。
