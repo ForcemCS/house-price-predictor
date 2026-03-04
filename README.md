@@ -6,18 +6,38 @@
 
 ```
 house-price-predictor/
-├── configs/                # YAML-based configuration for models
-├── data/                   # Raw and processed datasets
-├── deployment/
-│   └── mlflow/             # Docker Compose setup for MLflow
-├── models/                 # Trained models and preprocessors
-├── notebooks/              # Optional Jupyter notebooks for experimentation
-├── src/
-│   ├── data/               # Data cleaning and preprocessing scripts
-│   ├── features/           # Feature engineering pipeline
-│   ├── models/             # Model training and evaluation
-├── requirements.txt        # Python dependencies
-└── README.md               # You’re here!
+├── data
+│   ├── processed
+│   │   └── README.md
+│   └── raw
+│       └── house_data.csv
+├── models
+│   └── trained
+│       └── README.md
+├── notebooks
+│   ├── 00_data_engineering.ipynb
+│   ├── 01_exploratory_data_analysis.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   └── 03_experimentation.ipynb
+├── src
+│   ├── api
+│   │   ├── README.md
+│   │   ├── inference.py
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   ├── schemas.py
+│   │   └── utils.py
+│   ├── data
+│   │   └── run_processing.py
+│   ├── features
+│   │   └── engineer.py
+│   └── models
+│       └── train_model.py
+└── streamlit_app
+    ├── README.md
+    ├── app.py
+    └── requirements.txt
+
 ```
 目录结构深度解析
    * `data/` (数据层)
