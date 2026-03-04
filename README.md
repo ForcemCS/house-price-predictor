@@ -1,8 +1,8 @@
-# 🏠 House Price Predictor – An MLOps Learning Project
+# House Price Predictor – An MLOps Learning Project
 这是一个非常标准的 端到端机器学习项目结构，涵盖了从原始数据处理到模型部署的全流程
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 house-price-predictor/
