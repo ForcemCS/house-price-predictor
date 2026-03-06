@@ -10,7 +10,7 @@ house-price-predictor/
 │   ├── processed
 │   │   └── README.md
 │   └── raw
-│       └── house_data.csv
+│       └── house_data.csv   ##数据工程师完成大量的预处理后得到的
 ├── models
 │   └── trained
 │       └── README.md
@@ -28,7 +28,7 @@ house-price-predictor/
 │   │   ├── schemas.py
 │   │   └── utils.py
 │   ├── data
-│   │   └── run_processing.py
+│   │   └── run_processing.py     
 │   ├── features
 │   │   └── engineer.py
 │   └── models
