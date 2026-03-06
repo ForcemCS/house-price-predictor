@@ -91,3 +91,32 @@ house-price-predictor/
    * 执行： 运行 streamlit_app/app.py。
    * 协作： Streamlit 作为客户端，向 src/api/ 发送 HTTP 请求，获取预测结果并可视化展示给终端用户。
 
+## Model Workflow
+
+### Step 1: Data Processing
+
+清理和预处理原始房屋数据集
+
+```
+python src/data/run_processing.py   --input data/raw/house_data.csv   --output data/processed/cleaned_house_data.csv
+```
+
+------
+
+### Step 2: Feature Engineering
+
+应用转换并生成特性
+
+```
+python src/features/engineer.py   --input data/processed/cleaned_house_data.csv   --output data/processed/featured_house_data.csv   --preprocessor models/trained/preprocessor.pkl
+```
+
+------
+
+### Step 3: Modeling & Experimentation
+
+训练你的模型并将所有内容记录到MLflow中：
+
+```
+python src/models/train_model.py   --config configs/model_config.yaml   --data data/processed/featured_house_data.csv   --models-dir models   --mlflow-tracking-uri http://12.0.0.200:5555
+```
