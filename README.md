@@ -49,7 +49,7 @@ house-price-predictor/
        * 这是项目的核心，将 Notebook 中的实验代码工程化、模块化。
        * data/run_processing.py: 数据清洗脚本。
        * features/engineer.py: 特征提取逻辑（确保训练和推理时特征一致）。
-       * models/train_model.py: 自动化训练脚本，输出模型文件。
+       * models/train_model.py: 自动化训练脚本，输出模型文件。将 Notebook 中杂乱的代码提取出来，写成结构化、可复用且易于进行版本控制的 Python 模块
        * api/: 模型推理服务。使用 FastAPI 或 Flask 将模型包装成 Web API，供其他系统调用。
    * `models/trained/` (模型仓库)
        * 存放训练好的模型权重和配置（如 .pkl, .h5, .onnx）。
@@ -80,11 +80,14 @@ house-price-predictor/
   阶段 C：模型训练与版本化 (CI/CD for ML)
    * 执行： 运行 src/models/train_model.py。
    * 协作： 训练脚本会调用 src/features 中的特征逻辑。如果配置了 deployment/mlflow，训练过程中的参数、指标和最终模型会被自动记录到 MLflow 服务器中。
+   * Model 产出物 (model.pkl & preprocessor.pkl): 经过上面的训练代码运行后，会生成模型文件。图中使用 .pkl（Pickle格式）代表序列化后的 Python 对象。这里非常严谨地画了两个文件：model.pkl（绿框，即训练好的算法模型）和 preprocessor.pkl（数据预处理逻辑）。在生产环境中，必须保存预处理逻辑，以确保线上输入的新数据经过了与训练时完全相同的清洗和转换步骤。
+   * 
 
 
   阶段 D：部署与推理 (Deployment & Inference)
    * 执行： 启动 src/api/main.py 或部署 deployment/ 中的配置。
    * 协作： API 服务从 models/trained/ 加载模型。当用户发送请求时，API 调用 src/api/utils.py 进行预处理，并返回预测价格。
+   * REST API: 生成的 .pkl 文件会被加载到一个 Web 服务中，并暴露为 REST API（通常使用 Flask 或 FastAPI 等框架搭建）。这样，模型就不再只是一个静态文件，而是一个可以通过网络接收请求并返回预测结果的服务接口。
 
 
   阶段 E：交互演示 (UI/Presentation)
